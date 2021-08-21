@@ -1,1 +1,73 @@
-<p>empleados-form works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{!id ? 'Crear Empleado' : 'Editar Empleado'}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div class="container">
+      <form [formGroup]="empleadoForm" (submit)="submit()">
+        <div class="row">
+          <div class="col-md">
+            <mat-form-field class="form-field full-width" appearance="outline">
+              <mat-label>Nombres</mat-label>
+              <input matInput formControlName="name" required>
+              <mat-error *ngIf="empleadoForm.controls.name.touched && empleadoForm.controls.name.invalid">
+                <span *ngIf="empleadoForm.controls.name.errors.required">Este campo es requerido.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md">
+            <mat-form-field class="form-field full-width" appearance="outline">
+              <mat-label>Apellidos</mat-label>
+              <input matInput formControlName="lastName" required>
+              <mat-error *ngIf="empleadoForm.controls.lastName.touched && empleadoForm.controls.lastName.invalid">
+                <span *ngIf="empleadoForm.controls.lastName.errors.required">Este campo es requerido.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+
+            <mat-form-field class="form-field full-width" appearance="outline">
+              <mat-label>Fecha de Cumpleaños</mat-label>
+              <input readonly matInput [matDatepicker]="picker" formControlName="birthDate" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="empleadoForm.controls.birthDate.touched && empleadoForm.controls.birthDate.invalid">
+                <span *ngIf="empleadoForm.controls.birthDate.errors.required">Este campo es requerido.</span>
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+          <div class="col-md">
+            <mat-form-field class="form-field full-width" appearance="outline">
+              <mat-label>Salario</mat-label>
+              <input matInput formControlName="pay" required
+                     currencyMask [options]="{ prefix: '$ ', thousands: '.', precision : 0 }">
+              <mat-error *ngIf="empleadoForm.controls.pay.touched && empleadoForm.controls.pay.invalid">
+                <span *ngIf="empleadoForm.controls.pay.errors.required">Este campo es requerido.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button mat-raised-button color="success" type="submit" [disabled]="loading">
+            <mat-icon>check</mat-icon>
+            Guardar
+          </button>
+
+          <button [routerLink]="'/'" mat-raised-button color="cancel" type="button" class="ml">
+            <mat-icon>close</mat-icon>
+            Cancelar
+          </button>
+        </div>
+
+        <app-loading [show]="loading"></app-loading>
+
+      </form>
+    </div>
+
+  </mat-card-content>
+</mat-card>

@@ -6,6 +6,7 @@ import {EmpleadosFormComponent} from "./empleados-form/empleados-form.component"
 const routes: Routes = [
   {path: '', component: EmpleadosComponent},
   {path: 'new', component: EmpleadosFormComponent},
+  {path: ':id', component: EmpleadosFormComponent},
 ];
 
 @NgModule({

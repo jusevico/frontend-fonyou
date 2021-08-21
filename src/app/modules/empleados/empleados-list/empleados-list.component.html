@@ -17,7 +17,7 @@
       <div mat-line class="text-secondary">{{empleado.birthDate}}</div>
       <div mat-line class="text-success"> $ {{empleado.pay | thousands}} </div>
 
-      <button mat-icon-button [matTooltip]="'Editar'">
+      <button mat-icon-button [matTooltip]="'Editar'" [routerLink]="[empleado.id]">
         <mat-icon class="text-primary">edit</mat-icon>
       </button>
 
