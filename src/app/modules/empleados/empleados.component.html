@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <span class="vertical-align-middle">Empleados</span>
+
+      <button mat-raised-button color="accent"
+              class="vertical-align-middle ml"
+              [routerLink]="['new']"
+              [matTooltip]="'Crear Empleado'">
+        <mat-icon>add</mat-icon>
+        Nuevo
+      </button>
+
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <app-empleados-list></app-empleados-list>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,30 @@
+<app-loading [show]="loading"></app-loading>
+
+<app-sin-registros *ngIf="loading === false && empleados.length === 0"
+  [title]="'Ups! Parece que no hay empleados'"
+  [message]="'Puede empezar creando uno'"
+  [path]="'new'"
+  [label]="'Crear Empleado'"
+></app-sin-registros>
+
+<mat-list>
+  <ng-container *ngFor="let empleado of empleados">
+    <mat-divider></mat-divider>
+    <mat-list-item>
+
+      <mat-icon mat-list-icon class="text-primary">person</mat-icon>
+      <div mat-line>{{empleado.name}} {{empleado.lastName}}</div>
+      <div mat-line class="text-secondary">{{empleado.birthDate}}</div>
+      <div mat-line class="text-success"> $ {{empleado.pay | thousands}} </div>
+
+      <button mat-icon-button [matTooltip]="'Editar'">
+        <mat-icon class="text-primary">edit</mat-icon>
+      </button>
+
+      <button mat-icon-button [matTooltip]="'Borrar'" (click)="eliminar(empleado)">
+        <mat-icon class="text-danger">delete</mat-icon>
+      </button>
+
+    </mat-list-item>
+  </ng-container>
+</mat-list>
